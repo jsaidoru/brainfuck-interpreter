@@ -1,7 +1,8 @@
 # brainfuck-intepreter
 A simple **brainfuck** intepreter written in **C++** with **basic bounds checking** and **edge case handling**. This is just a small project I made when getting bored, so I don't plan to extend or optimize it.
 # Usage
-Compile the .cpp file and run the executable file: `<executable filename> <source code filename>`
+Compile the .cpp file (or just use the precompiled .exe if you are using Windows) and run the executable file: `<executable filename> <source code filename>`
+Input (using the , command) is accepted from stdin (standard input). The intepreter should check for EOF, but it doesn't work sometimes.
 # Learning brainfuck
 Refer to the article about brainfuck in Wikipedia: https://en.wikipedia.org/wiki/Brainfuck, it shouldn't be difficult to understand.
 # Contributing

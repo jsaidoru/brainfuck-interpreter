@@ -34,7 +34,7 @@ std::unordered_map<size_t, size_t> find_loops(const std::string& code)
 	return loops;
 }
 
-void intepret(const std::string& code)
+void interpret(const std::string& code)
 {
 	std::vector<uint8_t> mem(1048576, 0);
 	std::unordered_map<size_t, size_t> loops = find_loops(code);
@@ -95,6 +95,6 @@ int main(int argc, char* argv[])
 	{
 		code += line;
 	}
-	intepret(code);
+	interpret(code);
 	return 0;
 }

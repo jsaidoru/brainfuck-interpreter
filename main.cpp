@@ -34,9 +34,9 @@ std::unordered_map<size_t, size_t> find_loops(const std::string& code)
 	return loops;
 }
 
-void interpret(const std::string& code)
+void interpret(const std::string& code, size_t MEMORY_ARRAY_SIZE = 1048576)
 {
-	std::vector<uint8_t> mem(1048576, 0);
+	std::vector<uint8_t> mem(MEMORY_ARRAY_SIZE, 0);
 	std::unordered_map<size_t, size_t> loops = find_loops(code);
 	size_t ptr = 0;
 	size_t ip = 0;
@@ -83,18 +83,18 @@ void interpret(const std::string& code)
 
 int main(int argc, char* argv[])
 {
-	if (argc != 2) throw std::runtime_error("Invalid arguments. Usage: <executable filename> <code filename>");
+	if (!(argc == 2 || argc == 3)) throw std::runtime_error("Invalid arguments. Usage: <executable filename> <code filename> <memory array size (in byte)(optional)>");
+	size_t memory_array_size = 1048576;
+	if (argc == 3) memory_array_size = std::stoi(argv[2]);
+
 	char* filename = argv[1];
 	std::ifstream codefile;
 	codefile.open(filename, std::ios::in);
 	if (!codefile) throw std::runtime_error("Could not open source file");
 
-	std::string code;
-	std::string line;
-	while (std::getline(codefile, line))
-	{
-		code += line;
-	}
-	interpret(code);
+	std::string code, line;
+	while (std::getline(codefile, line)) code += line;
+	interpret(code, memory_array_size);
+	
 	return 0;
 }
